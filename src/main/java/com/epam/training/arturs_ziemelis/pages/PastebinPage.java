@@ -4,10 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class PastebinPage {
     private WebDriver driver;
-
     private static final By TEXT_AREA = By.id("postform-text");
     private static final By EXPIRATION_DROPDOWN = By.id("select2-postform-expiration-container");
     private static final By TEN_MINUTES_OPTION = By.xpath("//li[text()='10 Minutes']");
@@ -22,6 +25,7 @@ public class PastebinPage {
         driver.get(url);
     }
     public void clickAgreeBlockerButton() {
+        waitForElementToBeVisible(AGREE_BUTTON);
         driver.findElement(AGREE_BUTTON).click();
     }
     public void enterCode(String code) {
@@ -45,5 +49,9 @@ public class PastebinPage {
     public void scrollToElement(WebElement element) {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
+    }
+    public void waitForElementToBeVisible(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 }
