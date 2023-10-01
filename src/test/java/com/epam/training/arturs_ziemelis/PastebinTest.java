@@ -21,13 +21,12 @@ public class PastebinTest {
     }
 
     @Test
-    public void testCreateNewPaste() throws InterruptedException {
+    public void testCreateNewPaste() {
         pastebinPage.openPage("https://pastebin.com/")
                 .clickAgreeBlockerButton()
                 .enterCode("Hello from WebDriver")
                 .setDropdownOption("10 Minutes")
                 .setPasteName("helloweb");
-        Thread.sleep(5000);
     }
 
     @AfterEach
