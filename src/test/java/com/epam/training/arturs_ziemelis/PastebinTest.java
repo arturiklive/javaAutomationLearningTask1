@@ -22,11 +22,11 @@ public class PastebinTest {
 
     @Test
     public void testCreateNewPaste() {
-        pastebinPage.openPage("https://pastebin.com/");
-        pastebinPage.clickAgreeBlockerButton();
-        pastebinPage.enterCode("Hello from WebDriver");
-        pastebinPage.setExpirationToTenMinutes();
-        pastebinPage.setPasteName("helloweb");
+        pastebinPage.openPage("https://pastebin.com/")
+                .clickAgreeBlockerButton()
+                .enterCode("Hello from WebDriver")
+                .setExpirationToTenMinutes()
+                .setPasteName("helloweb");
     }
 
     @AfterEach

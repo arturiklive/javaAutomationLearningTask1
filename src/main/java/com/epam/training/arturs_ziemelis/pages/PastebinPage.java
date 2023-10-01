@@ -21,18 +21,21 @@ public class PastebinPage {
         this.driver = driver;
     }
 
-    public void openPage(String url) {
+    public PastebinPage openPage(String url) {
         driver.get(url);
+        return this;
     }
-    public void clickAgreeBlockerButton() {
+    public PastebinPage clickAgreeBlockerButton() {
         waitForElementToBeVisible(AGREE_BUTTON);
         driver.findElement(AGREE_BUTTON).click();
+        return this;
     }
-    public void enterCode(String code) {
+    public PastebinPage enterCode(String code) {
         driver.findElement(TEXT_AREA).sendKeys(code);
+        return this;
     }
 
-    public void setExpirationToTenMinutes() {
+    public PastebinPage setExpirationToTenMinutes() {
         WebElement expirationDropdownElement = driver.findElement(EXPIRATION_DROPDOWN);
         scrollToElement(expirationDropdownElement);
         expirationDropdownElement.click();
@@ -40,10 +43,12 @@ public class PastebinPage {
         WebElement tenMinutesOptionElement = driver.findElement(TEN_MINUTES_OPTION);
         scrollToElement(tenMinutesOptionElement);
         tenMinutesOptionElement.click();
+        return this;
     }
 
-    public void setPasteName(String pasteName) {
+    public PastebinPage setPasteName(String pasteName) {
         driver.findElement(PASTE_NAME_INPUT).sendKeys(pasteName);
+        return this;
     }
 
     public void scrollToElement(WebElement element) {
