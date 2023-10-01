@@ -12,8 +12,8 @@ import java.time.Duration;
 public class PastebinPage {
     private WebDriver driver;
     private static final By TEXT_AREA = By.id("postform-text");
-    private static final By EXPIRATION_DROPDOWN = By.id("select2-postform-expiration-container");
-    private static final By TEN_MINUTES_OPTION = By.xpath("//li[text()='10 Minutes']");
+    private static final By DROPDOWN_EXPIRATION = By.id("select2-postform-expiration-container");
+    private static final String DROPDOWN_OPTION_TEMPLATE = "//li[text()='%s']";
     private static final By PASTE_NAME_INPUT = By.id("postform-name");
     private static final By AGREE_BUTTON = By.xpath("//button[@class=' css-47sehv']");
 
@@ -35,14 +35,14 @@ public class PastebinPage {
         return this;
     }
 
-    public PastebinPage setExpirationToTenMinutes() {
-        WebElement expirationDropdownElement = driver.findElement(EXPIRATION_DROPDOWN);
+    public PastebinPage setDropdownOption(String option) {
+        WebElement expirationDropdownElement = driver.findElement(DROPDOWN_EXPIRATION);
         scrollToElement(expirationDropdownElement);
         expirationDropdownElement.click();
 
-        WebElement tenMinutesOptionElement = driver.findElement(TEN_MINUTES_OPTION);
-        scrollToElement(tenMinutesOptionElement);
-        tenMinutesOptionElement.click();
+        String xpath = String.format(DROPDOWN_OPTION_TEMPLATE, option);
+        WebElement element = driver.findElement(By.xpath(xpath));
+        element.click();
         return this;
     }
 
